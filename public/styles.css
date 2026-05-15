@@ -229,7 +229,12 @@ button { cursor: pointer; }
   justify-content: space-between;
   margin-bottom: 24px;
 }
-
+.login-panel h1 {
+  font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+  line-height: 1.2;
+  word-break: break-word;
+  max-width: 100%;
+}
 .section-heading h2, .dashboard-head h1, .login-panel h1 {
   margin: 0;
   font-size: clamp(2.2rem, 5vw, 4.8rem);
