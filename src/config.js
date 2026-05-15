@@ -11,10 +11,10 @@ export const config = {
   publicDir: path.join(rootDir, 'public'),
   uploadDir: path.join(rootDir, 'public', 'uploads'),
   dbPath: path.join(rootDir, 'data', 'kalianko.sqlite'),
-  port: Number(process.env.PORT || 3000),
+  port: Number(process.env.PORT || 80),
   sessionSecret: process.env.SESSION_SECRET || crypto.randomBytes(48).toString('hex'),
   adminEmail: process.env.ADMIN_EMAIL || 'admin@kalianko.local',
-  adminPassword: process.env.ADMIN_PASSWORD || 'ChangeMe123!'
+  adminPassword: process.env.ADMIN_PASSWORD || 'P5cD0aV7qH1xE3yU'
 };
 
 export function requireEnvHardening() {
