@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kalianko Store</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <canvas id="field" aria-hidden="true"></canvas>
+    <header class="topbar">
+      <a class="brand" href="#store" aria-label="Kalianko Store">
+        <span class="brand-mark"></span>
+        <span>Kalianko Store</span>
+      </a>
+      <nav>
+        <a href="#store">Obchod</a>
+        <a href="#drop">Drop</a>
+        <a href="/admin.html">Admin</a>
+      </nav>
+      <button class="cart-button" id="cartToggle" type="button">
+        <span>Košík</span>
+        <strong id="cartCount">0</strong>
+      </button>
+    </header>
+
+    <main>
+      <section class="hero" id="drop">
+        <div class="hero-copy reveal">
+          <p class="kicker">Limitovaný obchod v reálném čase</p>
+          <h1>Kalianko Store</h1>
+          <p>Limitované dropy, aktuální skladové zásoby a objednávky s platbou převodem.</p>
+          <a class="primary-link" href="#store">Zobrazit produkty</a>
+        </div>
+        <div class="hero-visual reveal">
+          <div class="orbital">
+            <span></span><span></span><span></span>
+            <div class="core">KS</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="status-strip reveal">
+        <div><span id="socketStatus">odpojeno</span><small>živé spojení</small></div>
+        <div><span id="onlineCount">1</span><small>návštěvníků připojeno</small></div>
+        <div><span>SQLite</span><small>databáze</small></div>
+        <div><span>Helmet</span><small>bezpečnostní hlavičky</small></div>
+      </section>
+
+      <section class="store-section" id="store">
+        <div class="section-heading reveal">
+          <p class="kicker">Aktuální nabídka</p>
+          <h2>Produkty skladem</h2>
+        </div>
+        <div class="product-grid" id="productGrid"></div>
+      </section>
+    </main>
+
+    <aside class="cart-panel" id="cartPanel" aria-label="Nákupní košík">
+      <div class="cart-head">
+        <h2>Košík</h2>
+        <button class="icon-button" id="cartClose" type="button" aria-label="Zavřít">x</button>
+      </div>
+      <div id="cartItems" class="cart-items"></div>
+      <form id="checkoutForm" class="checkout-form">
+        <input name="customerName" autocomplete="name" placeholder="Jméno a příjmení" required>
+        <input name="email" autocomplete="email" type="email" placeholder="E-mail" required>
+        <button class="primary-button" type="submit">Odeslat objednávku</button>
+      </form>
+      <div class="payment-box hidden" id="paymentBox"></div>
+      <p class="cart-total">Celkem <strong id="cartTotal">0 Kč</strong></p>
+      <p class="form-message" id="cartMessage"></p>
+    </aside>
+  </body>
+</html>

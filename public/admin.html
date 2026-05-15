@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kalianko Administrace</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/admin.js" defer></script>
+  </head>
+  <body class="admin-body">
+    <header class="topbar admin-topbar">
+      <a class="brand" href="/">
+        <span class="brand-mark"></span>
+        <span>Kalianko Administrace</span>
+      </a>
+      <nav>
+        <a href="/">Obchod</a>
+        <button class="ghost-button" id="logoutButton" type="button">Odhlásit</button>
+      </nav>
+    </header>
+
+    <main class="admin-shell">
+      <section class="login-panel" id="loginPanel">
+        <form id="loginForm" class="admin-card">
+          <p class="kicker">Zabezpečená část</p>
+          <h1>Přihlášení administrátora</h1>
+          <input name="email" autocomplete="username" type="email" placeholder="E-mail" required>
+          <input name="password" autocomplete="current-password" type="password" placeholder="Heslo" required>
+          <button class="primary-button" type="submit">Přihlásit</button>
+          <p class="form-message" id="loginMessage"></p>
+        </form>
+      </section>
+
+      <section class="dashboard admin-layout hidden" id="dashboard">
+        <aside class="admin-sidebar">
+          <div class="sidebar-title">
+            <span class="brand-mark"></span>
+            <strong>Kalianko</strong>
+          </div>
+          <button class="sidebar-link active" data-view="overview" type="button">Přehled</button>
+          <button class="sidebar-link" data-view="orders" type="button">Objednávky</button>
+          <button class="sidebar-link" data-view="products" type="button">Produkty</button>
+          <a class="sidebar-link" href="/">Zobrazit obchod</a>
+          <div class="sidebar-status">
+            <small>Živé spojení</small>
+            <span id="adminSocket">odpojeno</span>
+          </div>
+        </aside>
+
+        <section class="admin-content">
+          <div class="dashboard-head">
+            <div>
+              <p class="kicker">Správa obchodu</p>
+              <h1 id="adminTitle">Přehled</h1>
+            </div>
+          </div>
+
+          <section class="admin-view" data-panel="overview">
+            <div class="metrics-grid">
+              <div class="metric-card"><span id="metricOrders">0</span><small>objednávek</small></div>
+              <div class="metric-card"><span id="metricProducts">0</span><small>produktů</small></div>
+              <div class="metric-card"><span id="metricRevenue">0 Kč</span><small>hodnota objednávek</small></div>
+              <div class="metric-card"><span id="metricOpen">0</span><small>otevřeno</small></div>
+            </div>
+            <div class="admin-card">
+              <h2>Poslední objednávky</h2>
+              <div id="overviewOrders" class="admin-list compact"></div>
+            </div>
+          </section>
+
+          <section class="admin-view hidden" data-panel="orders">
+            <div class="admin-card orders-card">
+              <h2>Objednávky</h2>
+              <div id="ordersList" class="admin-list"></div>
+            </div>
+          </section>
+
+          <section class="admin-view hidden" data-panel="products">
+            <section class="admin-grid">
+              <form id="productForm" class="admin-card">
+                <h2>Editor produktu</h2>
+                <input type="hidden" name="productId">
+                <input type="hidden" name="imagePath">
+                <input name="name" placeholder="Název produktu" required>
+                <textarea name="description" placeholder="Popis produktu" required></textarea>
+                <label class="upload-line">
+                  <span>Obrázek produktu</span>
+                  <input name="image" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+                </label>
+                <div class="image-preview empty" id="imagePreview">Není vybraný žádný obrázek</div>
+                <div class="form-row">
+                  <input name="priceCents" type="number" min="0" step="100" placeholder="Cena v haléřích" required>
+                  <input name="stock" type="number" min="0" placeholder="Sklad" required>
+                </div>
+                <div class="form-row">
+                  <input name="category" placeholder="Kategorie" required>
+                  <input name="accent" type="color" value="#35f2b7" aria-label="Barva produktu">
+                </div>
+                <label class="check-line">
+                  <input name="featured" type="checkbox">
+                  Zvýraznit produkt
+                </label>
+                <button class="primary-button" type="submit">Uložit produkt</button>
+                <button class="ghost-button" id="resetForm" type="button">Nový produkt</button>
+                <p class="form-message" id="productMessage"></p>
+              </form>
+
+              <div class="admin-card">
+                <h2>Produkty</h2>
+                <div id="adminProducts" class="admin-list"></div>
+              </div>
+            </section>
+          </section>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
