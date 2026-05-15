@@ -53,21 +53,6 @@ const upload = multer({
 app.disable('x-powered-by');
 app.use(compression());
 app.use(express.json({ limit: '40kb' }));
-app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: ["'self'"],
-      styleSrc: ["'self'", "'unsafe-inline'"],
-      imgSrc: ["'self'", 'data:'],
-      connectSrc: ["'self'", 'ws:', 'wss:'],
-      objectSrc: ["'none'"],
-      baseUri: ["'self'"],
-      frameAncestors: ["'none'"]
-    }
-  },
-  crossOriginEmbedderPolicy: false
-}));
 app.use(express.static(config.publicDir, {
   extensions: ['html'],
   maxAge: '1h',
